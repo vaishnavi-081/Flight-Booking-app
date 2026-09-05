@@ -1,0 +1,71 @@
+.user-bookingsPage{
+    margin: 0 auto;
+    padding: 120px 2% 60px;
+    max-width: 1800px;
+    height: fit-content;
+    width: 100%;
+}
+
+.user-bookingsPage h1{
+    color: rgb(73, 111, 138);
+    margin-left: 0;
+    color: var(--blue-dark);
+}
+
+.user-bookings{
+
+    margin-top: 35px;
+    width: 100%;
+    margin-left: 0;
+    height: fit-content;
+    padding-bottom: 5vh;
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 18px;
+}
+
+.user-bookings .user-booking{
+
+    background: rgba(255,255,255,0.78);
+    width: 100%;
+    margin-left: 0;
+    padding: 24px;
+    border: 1px solid var(--line);
+    border-radius: 12px;
+    box-shadow: var(--shadow);
+
+}
+.user-bookings .user-booking:hover{
+    transform: translateY(-3px);
+}
+.user-bookings .user-booking span{
+    display: flex;
+    gap: 25px;
+    
+}
+
+.user-bookings .user-booking p{
+    margin: 0;
+    margin-bottom: 3px;
+    color: var(--muted);
+}
+.user-bookings .user-booking p b{
+
+    font-weight: 600;
+}
+.user-bookings .user-booking ol{
+    margin: 0;   
+    font-size: 0.85rem;     
+}
+.user-bookings .user-booking ol b{
+   font-weight: 500;      
+}
+.user-bookings .user-booking button{
+
+    margin-top: 15px;
+}
+
+@media (max-width: 720px) {
+    .user-bookingsPage { padding: 100px 5% 40px; }
+    .user-bookings { grid-template-columns: 1fr; }
+}

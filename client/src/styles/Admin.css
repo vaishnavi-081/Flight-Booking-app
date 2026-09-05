@@ -1,0 +1,115 @@
+.admin-page{
+    margin: 0 auto;
+    padding: 120px 5% 60px;
+    max-width: 1280px;
+    height: fit-content;
+}
+
+.admin-page-cards{
+
+    display: grid;
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+    gap: 18px;
+}
+
+.admin-card{
+
+    padding: 26px 24px;
+    text-align: center;
+    width: auto;
+    min-height: 160px;
+    border: 1px solid var(--line);
+    border-radius: 12px;
+    box-shadow: var(--shadow);
+    background: rgba(255,255,255,0.78);
+    display: flex;
+    flex-direction: column;
+    justify-content: space-evenly;
+}
+
+.admin-card:hover{
+    transform: translateY(-3px);
+}
+
+.admin-card h4{
+    margin: 0;
+    color: var(--muted);
+
+}
+
+.admin-card p{
+
+    margin: 0;
+    font: 700 2.5rem 'Space Grotesk', sans-serif;
+    color: var(--blue-dark);
+}
+
+
+.admin-requests-container{
+
+    margin: 70px 0 3vh;
+    border: 1px solid var(--line);
+    width: 100%;
+    padding: 28px;
+    border-radius: 12px;
+    background: rgba(255,255,255,0.65);
+    box-shadow: var(--shadow);
+}
+
+.admin-requests-container h3{
+
+    color: var(--blue-dark);
+
+}
+
+.admin-requests{
+
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+    margin-top: 4vh;
+    height: 30vh;
+    overflow-y: scroll;
+    margin-left: 0;
+}
+
+.admin-request{
+    display: flex;
+    align-items: center;
+    gap: 24px;
+    background-color: rgba(245, 249, 250, 0.8);
+    border: 1px solid var(--line);
+    padding: 15px 25px;
+    margin-right: 10px;
+    border-radius: 9px;
+}
+
+.admin-request span{
+
+    display: flex;
+    flex-direction: column;
+}
+
+.admin-request span b{
+    font-weight: 700;
+    color: rgb(67, 89, 107);
+}
+
+
+
+.admin-request-actions{
+
+    display: flex;
+    gap: 30px;
+}
+.admin-request-actions button{
+    width: 7rem;
+}
+
+@media (max-width: 720px) {
+    .admin-page { padding: 100px 5% 40px; }
+    .admin-page-cards { grid-template-columns: 1fr; }
+    .admin-requests-container { padding: 20px; }
+    .admin-request { align-items: flex-start; flex-direction: column; }
+    .admin-request-actions { gap: 10px; }
+}
