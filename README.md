@@ -1,96 +1,304 @@
-# Flight Booking App
+ ✈️ Flight Booking App
 
-A MERN flight-booking application with customer, flight-operator, and administrator workflows.
+A full-stack **MERN Flight Booking Application** designed to manage flight discovery, bookings, users, flight operators, and administrative workflows through a role-based system.
 
-## Features
+The application provides separate workflows for **Customers, Flight Operators, and Administrators**, with server-side validation and authentication-related security controls.
 
-- Search flights by origin and destination.
-- Book passengers with seat class, journey date, and server-calculated pricing.
-- View and cancel customer bookings.
-- Admin tables for users, operators, bookings, and flights.
-- Admin-only add, edit, delete, and booking-modification controls.
-- Approved operators can add and manage flights.
-- Profile page with name update and authenticated password change.
-- Password recovery through Brevo email OTP. OTPs expire after 10 minutes and are stored only as hashes.
-- Responsive tables and in-app notifications without browser alert popups.
+---
 
-## Stack
+## 🚀 Key Features
 
-- React and React Router
-- Node.js and Express
-- MongoDB Atlas and Mongoose
-- Axios and Nodemailer
+### 👤 Customer
 
-## Setup
+- Search flights by origin and destination
+- Select journey date and seat class
+- Book flights with server-calculated pricing
+- View booking history
+- Cancel bookings
+- Update profile information
+- Change authenticated password
+- Recover password using email OTP
+- Responsive UI with in-app notifications
 
-```powershell
+### ✈️ Flight Operator
+
+- Operator-specific dashboard
+- Add flights
+- Manage existing flights
+- Update flight information
+- View operational booking information
+- Operator access controlled by authorization
+
+### 🛡️ Administrator
+
+- Manage users
+- Manage flight operators
+- Manage flights
+- Manage customer bookings
+- Add, edit, and delete flight records
+- Modify bookings when authorized
+- Server-side administrator authorization
+
+---
+
+## 🔐 Security Features
+
+- Server-side authorization for administrative operations
+- Server-side booking validation
+- Server-calculated booking prices
+- Passenger input validation
+- Seat-capacity verification
+- Password recovery using email OTP
+- OTP expiration after 10 minutes
+- OTPs stored only as hashes
+- SMTP credentials stored through environment variables
+- Sensitive `.env` files excluded from Git
+- JSON-based error handling for SMTP failures
+
+---
+
+## 🏗️ Application Architecture
+
+```text
+                    ┌─────────────────────┐
+                    │       Client        │
+                    │  React + Router     │
+                    └──────────┬──────────┘
+                               │
+                             Axios
+                               │
+                               ▼
+                    ┌─────────────────────┐
+                    │       Server        │
+                    │ Node.js + Express   │
+                    └──────────┬──────────┘
+                               │
+                         Mongoose ODM
+                               │
+                               ▼
+                    ┌─────────────────────┐
+                    │     MongoDB Atlas   │
+                    │      Database       │
+                    └─────────────────────┘
+🔄 Main Workflow
+User
+  │
+  ▼
+Login / Registration
+  │
+  ▼
+Search / Select Flight
+  │
+  ▼
+Enter Passenger Details
+  │
+  ▼
+Server Validation
+  │
+  ├── Check Seat Capacity
+  ├── Validate Passenger Data
+  └── Calculate Booking Price
+  │
+  ▼
+Booking Created
+  │
+  ▼
+View / Cancel Booking
+🛠️ Tech Stack
+Frontend
+React
+React Router
+Axios
+Responsive CSS
+Backend
+Node.js
+Express.js
+REST APIs
+Nodemailer
+Database
+MongoDB Atlas
+Mongoose
+Development Tools
+Git
+GitHub
+npm
+VS Code
+Email Service
+Brevo SMTP
+📁 Project Structure
+Flight-Booking-APP-main/
+│
+├── client/
+│   ├── src/
+│   │   ├── components/
+│   │   ├── pages/
+│   │   ├── styles/
+│   │   └── ...
+│   ├── package.json
+│   └── ...
+│
+├── server/
+│   ├── index.js
+│   ├── schemas.js
+│   ├── seed.js
+│   ├── package.json
+│   ├── package-lock.json
+│   └── .env.example
+│
+├── .gitignore
+└── README.md
+⚙️ Installation
+1. Clone the Repository
+git clone https://github.com/vaishnavi-081/Flight-Booking-app.git
+cd Flight-Booking-APP-main
+2. Install Frontend Dependencies
 cd client
 npm install
+3. Install Backend Dependencies
 cd ..\server
 npm install
-```
+🔑 Environment Variables
 
-Create `server/.env`:
+Create:
 
-```env
+server/.env
+
+Add:
+
 MONGODB_URI=mongodb+srv://<username>:<password>@<cluster>/<database>?retryWrites=true&w=majority
+
 SMTP_HOST=smtp-relay.brevo.com
 SMTP_PORT=587
 SMTP_SECURE=false
 SMTP_USER=<brevo-smtp-login>
 SMTP_PASSWORD=<brevo-smtp-key>
 SMTP_FROM=<verified-sender-email>
+
 JWT_SECRET=<long-random-secret>
-```
 
-The sender must be verified in Brevo. Use an SMTP key, not the Brevo account password. Never commit `server/.env`.
+⚠️ Never commit server/.env to GitHub.
 
-## Seed Data
+The sender email must be verified with Brevo, and an SMTP key should be used instead of the Brevo account password.
 
-```powershell
+🌱 Seed Demo Data
+
+From the server directory:
+
 cd server
 npm run seed
-```
 
-This creates demo users and 132 directed city routes. Demo accounts use `password123`:
+The seed process creates demo users and 132 directed city routes.
 
-| Role | Email |
-| --- | --- |
-| Admin | `admin@example.com` |
-| Customer | `customer@example.com` |
-| Flight operator | `operator@example.com` |
+Demo Accounts
+Role	Email	Password
+Admin	admin@example.com	password123
+Customer	customer@example.com	password123
+Flight Operator	operator@example.com	password123
 
-Change demo passwords before any non-local use.
+⚠️ Change demo passwords before using the application outside a local development environment.
 
-## Run Locally
+▶️ Run the Application
+Start Backend
 
-Start the API in one terminal:
+Open Terminal 1:
 
-```powershell
 cd server
 npm start
-```
 
-API: `http://localhost:6001`
+Backend API:
 
-Start the frontend in another terminal:
+http://localhost:6001
+Start Frontend
 
-```powershell
+Open Terminal 2:
+
 cd client
 npm start
-```
 
-Frontend: `http://localhost:3000`
+Frontend:
 
-## Security Notes
+http://localhost:3000
+📸 Screenshots
 
-- Admin actions require server-side admin authorization.
-- Booking identity, price, passenger input, and seat capacity are checked by the server.
-- Password reset requires a short-lived OTP sent to the registered email.
-- SMTP failures return JSON errors instead of crashing the API.
+Screenshots can be added here to demonstrate:
 
-## Known Limitations
+Login / Registration
+Flight Search
+Flight Results
+Booking Page
+Customer Dashboard
+Operator Dashboard
+Admin Dashboard
+Booking Management
+🧪 Current Capabilities
 
-- Payment processing and refunds are not implemented.
-- The current session uses a client-stored user ID; production should use signed JWTs or secure HTTP-only sessions.
-- Flight schedules store route times but do not yet model date-specific inventory.
+The application currently supports:
+
+Flight search
+Customer booking management
+Flight cancellation
+Role-based workflows
+Flight operator management
+Administrative management
+Password change
+Password recovery
+Email OTP verification
+Server-side booking validation
+Seat-capacity checks
+Responsive interface
+🚧 Future Enhancements
+
+Potential production-level improvements include:
+
+💳 Online payment integration
+💰 Payment refunds
+🎫 E-ticket generation
+📧 Booking confirmation emails
+🔐 Secure JWT or HTTP-only session authentication
+📅 Date-specific flight inventory
+🔍 Advanced flight filtering
+📊 Analytics dashboard
+☁️ Cloud deployment
+🧪 Automated unit and integration testing
+🐳 Docker-based deployment
+⚠️ Known Limitations
+Payment processing and refunds are not currently implemented.
+The current session uses a client-stored user ID; production deployment should use signed JWTs or secure HTTP-only sessions.
+Flight schedules store route times but do not yet model date-specific inventory.
+🔒 Security Notes
+
+This project keeps sensitive configuration outside the repository through environment variables.
+
+The following files are intentionally excluded from Git:
+
+server/.env
+client/node_modules/
+server/node_modules/
+client/build/
+
+Never upload database credentials, SMTP keys, JWT secrets, or other sensitive credentials to GitHub.
+
+🎯 Project Objective
+
+The goal of this project is to demonstrate the development of a complete full-stack flight booking platform using the MERN stack while implementing real-world concepts such as:
+
+REST API development
+Database management
+Authentication and authorization
+Role-based access control
+Server-side validation
+Booking management
+Email-based password recovery
+Responsive frontend development
+👩‍💻 Author
+
+Vaishnavi Revanuru
+
+Computer Science Engineering Student
+
+GitHub:
+https://github.com/vaishnavi-081
+
+⭐ If You Find This Project Useful
+
+Feel free to explore the repository, review the implementation, and build upon the project.
